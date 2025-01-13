@@ -126,7 +126,6 @@ function openTab(evt, Category) {
   evt.currentTarget.className += " active";
 }
 </script>
-
 </body>
 </html>
 
