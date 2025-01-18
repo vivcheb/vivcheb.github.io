@@ -1,59 +1,92 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-body {font-family: Arial;}
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {font-family: Arial;}
 
-/* Style the tab */
-.tab {
-  overflow: hidden;
-  border: 1px solid #ccc;
-  background-color: #fff;
-  text-align: right; /* Align buttons to the right */
-}
+    /* Style the tab */
+    .tab {
+      overflow: hidden;
+      border: 1px solid #ccc;
+      background-color: #fff;
+      text-align: right; /* Align buttons to the right */
+    }
 
-/* Style the buttons inside the tab */
-.tab button {
-  background-color: inherit;
-  float: none;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  padding: 14px 16px;
-  transition: 0.3s;
-  font-size: 17px;
-  display: inline-block; /* Ensure buttons are inline */
-}
+    /* Style the buttons inside the tab */
+    .tab button {
+      background-color: inherit;
+      float: none;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      padding: 14px 16px;
+      transition: 0.3s;
+      font-size: 17px;
+      display: inline-block; /* Ensure buttons are inline */
+    }
 
-/* Align the "Vivian Chen" button to the left */
-.tab button:nth-child(5) {
-  float: left;
-}
+    /* Align the "Vivian Chen" button to the left */
+    .tab button:nth-child(5) {
+      float: left;
+    }
 
-/* Change background color of buttons on hover */
-.tab button:hover {
-  background-color: #ddd;
-}
+    /* Change background color of buttons on hover */
+    .tab button:hover {
+      background-color: #ddd;
+    }
 
-/* Create an active/current tablink class */
-.tab button.active {
-  background-color: #ccc;
-}
+    /* Create an active/current tablink class */
+    .tab button.active {
+      background-color: #ccc;
+    }
 
-/* Style the tab content */
-.tabcontent {
-  display: none;
-  padding: 6px 12px;
-  border: 1px solid #fff;
-  border-top: none;
-}
+    /* Style the tab content */
+    .tabcontent {
+      display: none;
+      padding: 6px 12px;
+      border: 1px solid #fff;
+      border-top: none;
+    }
 
-/* Make the first tab content visible initially */
-#VivianChen {
-  display: block;
-}
-</style>
+    /* Make the first tab content visible initially */
+    #VivianChen {
+      display: block;
+    }
+  
+    /* Container to center the iframe */
+    .iframe-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh; /* Full viewport height */
+    }
+
+    iframe {
+      width: 80%; /* Adjust width as needed */
+      height: 80%; /* Adjust height as needed */
+    }
+    /* Vivian Chen section styling */
+    .vivian-chen-image {
+      display: flex;
+      align-items: center; /* Vertically center the image and text */
+      justify-content: left; /* Align the content to the left */
+      margin: 20px; /* Add some margin for spacing */
+    }
+
+    .vivian-chen-image img {
+      width: 150px; /* Set image width */
+      height: auto; /* Maintain aspect ratio */
+      margin-right: 20px; /* Space between the image and the content */
+    }
+
+    .vivian-chen-text {
+      max-width: 600px; /* Limit the width of the text */
+      font-size: 18px; /* Adjust font size */
+      line-height: 1.6; /* Adjust line height for readability */
+
+    }
+  </style>
 </head>
 <body>
 
@@ -62,52 +95,39 @@ body {font-family: Arial;}
   <button class="tablinks" onclick="openTab(event, 'Gallery')">Gallery</button>
   <button class="tablinks" onclick="openTab(event, 'About')">About</button>
   <button class="tablinks" onclick="openTab(event, 'Resume')">Resume</button>
-  <button class="tablinks" onclick="openTab(event, 'VivianChen')">Vivian Chen</button>
+  <button class="tablinks active" onclick="openTab(event, 'VivianChen')">Vivian Chen</button>
 </div>
 
+<!-- projects tab -->
 <div id="Projects" class="tabcontent">
   <h3>[...]</h3>
   <p>[...]</p>
 </div>
 
+<!-- gallery tab -->
 <div id="Gallery" class="tabcontent">
   <p>Work In Progress!</p> 
 </div>
 
+<!-- about tab -->
 <div id="About" class="tabcontent">
   <h3>[...]</h3>
   <p>[...]</p>
 </div>
 
+<!-- resume tab -->
 <div id="Resume" class="tabcontent">
-<!-- insert resume:https://www.example.com -->
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Center Iframe Example</title>
-    <style>
-        /* Container to center the iframe */
-        .iframe-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh; /* Full viewport height */
-        }
-        iframe {
-            width: 80%; /* Adjust width as needed */
-            height: 80%; /* Adjust height as needed */
-        }
-    </style>
-</head>
-<body>
-    <div class="iframe-container">
-        <iframe src="https://vivcheb.github.io/resume.github.io/" frameborder="1"></iframe>
-    </div>
-</body>
+  <div class="iframe-container">
+    <iframe src="https://vivcheb.github.io/resume.github.io/" frameborder="1"></iframe>
+  </div>
 </div>
 
+<!-- vivian tab-->
 <div id="VivianChen" class="tabcontent"> 
   <h3>[...]</h3>
+   <div class="vivian-chen-image">
+    <img src="your-image-path.jpg" alt="Photo of Vivian Chen"> <!-- Replace with your image URL -->
+   <div class="vivian-chen-text">
   <p>[...]</p>
 </div>
 
@@ -126,5 +146,6 @@ function openTab(evt, Category) {
   evt.currentTarget.className += " active";
 }
 </script>
+
 </body>
 </html>
