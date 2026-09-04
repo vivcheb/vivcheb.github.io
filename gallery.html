@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hobby Gallery</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="header" class="resume-page-header">
+    <div class="container">
+        <nav>
+            <img src="images/logo.png" class="logo">
+            <ul id="sidemenu">
+                <li><a href="index.html#header">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#portfolio">Portfolio</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+                <i class="fa-solid fa-times" onclick="closemenu()"></i>
+            </ul>
+            <i class="fa-solid fa-bars" onclick="openmenu()"></i>
+        </nav>
+        <div class="header-text resume-header-text">
+            <p>Hobbies</p>
+            <h1><span id="gallery-title">Hobby Gallery</span></h1>
+        </div>
+    </div>
+</div>
+
+<div class="resume-content container">
+    <a href="index.html" class="gallery-back">← Back to Home</a>
+    <div class="gallery-grid" id="gallery-grid"></div>
+</div>
+
+    <script>
+        const galleryData = {
+            art: {
+                title: 'Art Gallery',
+                items: [
+                    { title: 'Sketchbook', description: 'Hand-drawn studies and expressive sketches.', image: 'images/self.jpg' },
+                    { title: 'Graphic Design', description: 'Poster layouts and creative visual experiments.', image: 'images/work1.png' },
+                    { title: 'Painting', description: 'Color studies and composition practice.', image: 'images/EK131.png' }
+                ]
+            },
+            sports: {
+                title: 'Sports Gallery',
+                items: [
+                    { title: 'Ultimate Frisbee', description: 'Fast-paced team play and practice sessions.', image: 'images/EK210.png' },
+                    { title: 'Fencing', description: 'Precision, agility, and strategy on the strip.', image: 'images/HIP.png' },
+                    { title: 'Training', description: 'Fitness and competitive preparation.', image: 'images/BostonUni.png' }
+                ]
+            },
+            reading: {
+                title: 'Reading Favorites',
+                items: [
+                    { title: 'The Dark Forest by Cixin Liu', description: 'a science-fiction novel where humanity prepares for an impending alien invasion by assigning secret plans to four Wallfacers', image: 'images/TheDarkForest.png' },
+                    { title: 'The Almanack of Naval Ravikant', description: 'A guide to wealth and happiness through leveraging specific knowledge, equity, and accountability.', image: 'images/TAONR.png' },
+                    { title: 'Book Stack', description: 'A small collection of ongoing reads.', image: 'images/self.jpg' }
+                ]
+            }
+        };
+
+        const params = new URLSearchParams(window.location.search);
+        const category = params.get('category') || 'art';
+        const selected = galleryData[category] || galleryData.art;
+
+        document.getElementById('gallery-title').textContent = selected.title;
+
+        const grid = document.getElementById('gallery-grid');
+        selected.items.forEach((item) => {
+            const card = document.createElement('div');
+            card.className = 'gallery-card work';
+            card.innerHTML = `
+                <img src="${item.image}" alt="${item.title}">
+                <div class="layer">
+                    <h3>${item.title}</h3>
+                    <p>${item.description}</p>
+                </div>
+            `;
+            grid.appendChild(card);
+        });
+    </script>
+</body>
+</html>
