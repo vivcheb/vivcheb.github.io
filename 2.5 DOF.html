@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2.5 DOF System Project | Vivian Chen</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="project-page">
+<header id="header" class="project-page-header">
+    <div class="container">
+        <nav>
+            <a href="index.html#header" aria-label="Vivian Chen home">
+                <img src="images/logo.png" class="logo" alt="Vivian Chen">
+            </a>
+            <ul id="sidemenu">
+                <li><a href="index.html#header">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#portfolio">Portfolio</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+                <li><a href="resume.html">Resume</a></li>
+                <i class="fa-solid fa-times" onclick="closemenu()" aria-label="Close menu"></i>
+            </ul>
+            <i class="fa-solid fa-bars" onclick="openmenu()" aria-label="Open menu"></i>
+        </nav>
+        <div class="header-text">
+            <p>Mechanical Engineering Project</p>
+            <h1><span>2.5 DOF System</span></h1>
+        </div>
+    </div>
+</header>
+
+<main class="container project-content">
+    <section class="project-section project-intro" aria-labelledby="project-intro-title">
+        <img class="project-intro-image" src="images/ME360_2.png" alt="2.5 DOF tripod prototype with linear stages and end effector">
+        <div class="project-copy">
+            <span class="project-kicker">Overview</span>
+            <h2 id="project-intro-title">ME360: Tripod</h2>
+            <p>This 2.5 degree-of-freedom system uses a slider moving in the X-Y plane to position an end effector. The mechanism is designed to add roll, pitch, yaw, and vertical Z movement, bringing together mechanical design, CAD, prototyping, and control code.</p>
+        </div>
+    </section>
+
+    <section class="project-section" aria-labelledby="project-timeline-title">
+        <div class="project-section-heading">
+            <h2 id="project-timeline-title">Project timeline</h2>
+        </div>
+        <div class="project-timeline">
+            <nav class="timeline-track" aria-label="Project stages">
+                <a class="timeline-step" href="#design">Design</a>
+                <span class="timeline-arrow" aria-hidden="true">&rarr;</span>
+                <a class="timeline-step" href="#cad">CAD</a>
+                <span class="timeline-arrow" aria-hidden="true">&rarr;</span>
+                <a class="timeline-step" href="#prototype">Prototype</a>
+                <span class="timeline-arrow" aria-hidden="true">&rarr;</span>
+                <a class="timeline-step" href="#code">Code</a>
+            </nav>
+        </div>
+    </section>
+
+    <section class="project-section" id="design" aria-labelledby="design-title">
+        <div class="project-section-heading">
+            <span class="project-kicker">01 / Design</span>
+            <h2 id="design-title">Hand drawings</h2>
+            <p>Early sketches and mechanism studies will go here.</p>
+        </div>
+        <div class="project-gallery" aria-label="Hand-drawing photo placeholders">
+            <div class="project-photo-placeholder" role="img" aria-label="Placeholder for a hand-drawing photo"><span>Add hand-drawing photo</span></div>
+            <div class="project-photo-placeholder" role="img" aria-label="Placeholder for a second hand-drawing photo"><span>Add hand-drawing photo</span></div>
+            <div class="project-photo-placeholder" role="img" aria-label="Placeholder for a third hand-drawing photo"><span>Add hand-drawing photo</span></div>
+        </div>
+    </section>
+
+    <section class="project-section" id="cad" aria-labelledby="cad-title">
+        <div class="project-section-heading">
+            <span class="project-kicker">02 / CAD</span>
+            <h2 id="cad-title">3D model</h2>
+        </div>
+        <figure class="project-model-figure">
+            <div class="model-viewer-placeholder" role="img" aria-label="Placeholder for an embedded 3D CAD model">3D model viewer space</div>
+        </figure>
+    </section>
+
+    <section class="project-section" id="prototype" aria-labelledby="prototype-title">
+        <div class="project-section-heading">
+            <span class="project-kicker">03 / Prototype</span>
+            <h2 id="prototype-title">Built system</h2>
+        </div>
+        <figure class="project-prototype-figure">
+            <img class="project-prototype-image" src="images/ME360_2.4.png" alt="Prototype of the 2.5 DOF system with linear rails, end effector, and controller">
+            <figcaption>2.5 DOF system prototype assembled on its linear stages.</figcaption>
+        </figure>
+    </section>
+
+    <section class="project-section" id="code" aria-labelledby="code-title">
+        <div class="project-section-heading">
+            <span class="project-kicker">04 / Code</span>
+            <h2 id="code-title">Control code</h2>
+        </div>
+        <div class="code-toolbar">
+            <span class="code-language">Arduino</span>
+            <button class="copy-code-button" id="copy-code-button" type="button" aria-label="Copy Arduino code">
+                <i class="fa-regular fa-copy" aria-hidden="true"></i>
+                <span>Copy code</span>
+            </button>
+        </div>
+        <pre class="code-placeholder"><code id="project-code">// Pin Definitions (RAMPS 1.4 / MKS Base)
+const int stepPins[3] = {A0, A6, 46};  // X, Y, Z Step pins
+const int dirPins[3]  = {A1, A7, 48};  // X, Y, Z Direction pins
+const int enPins[3]   = {38, A2, A8};  // X, Y, Z Enable pins
+
+int d = 250; // Pulse delay in microseconds (adjust speed)
+
+void setup() {
+  Serial.begin(115200);
+
+  for (int i = 0; i &lt; 3; i++) {
+    pinMode(stepPins[i], OUTPUT);
+    pinMode(dirPins[i], OUTPUT);
+    pinMode(enPins[i], OUTPUT);
+    digitalWrite(enPins[i], HIGH); // HIGH = Disabled (standby)
+  }
+
+  Serial.println("Individual Motor Controller Ready.");
+  Serial.println("Command format: &lt;Motor&gt; &lt;Steps&gt;");
+  Serial.println("Examples: 'X 25000', 'Y 25000', 'Z 25000'");
+}
+
+// Drive a single motor directly
+void runSingleMotor(int motorIndex, long steps) {
+  if (motorIndex &lt; 0 || motorIndex &gt; 2) return;
+
+  // Determine direction
+  bool forward = (steps &gt;= 0);
+  long stepCount = abs(steps);
+
+  // Enable target motor and set direction
+  digitalWrite(enPins[motorIndex], LOW); // LOW = Enabled
+  digitalWrite(dirPins[motorIndex], forward ? HIGH : LOW);
+  delayMicroseconds(5);
+
+  // Step pulse loop
+  for (long ct = 0; ct &lt; stepCount; ct++) {
+    digitalWrite(stepPins[motorIndex], HIGH);
+    delayMicroseconds(d);
+    digitalWrite(stepPins[motorIndex], LOW);
+    delayMicroseconds(d);
+  }
+
+  // Turn driver off to prevent heating
+  digitalWrite(enPins[motorIndex], HIGH);
+}
+
+void loop() {
+  if (Serial.available() &gt; 0) {
+    char motorChoice = Serial.read();
+
+    // Check if the character is X, Y, or Z (case-insensitive)
+    int motorIdx = -1;
+    if (motorChoice == 'X' || motorChoice == 'x') motorIdx = 0;
+    else if (motorChoice == 'Y' || motorChoice == 'y') motorIdx = 1;
+    else if (motorChoice == 'Z' || motorChoice == 'z') motorIdx = 2;
+
+    if (motorIdx != -1) {
+      long steps = Serial.parseInt(); // Reads step count and sign (+ or -)
+
+      // Clear remaining newline/carriage returns
+      while (Serial.available() &gt; 0) {
+        Serial.read();
+      }
+
+      Serial.print("Running Motor ");
+      Serial.print(motorChoice);
+      Serial.print(" for ");
+      Serial.print(steps);
+      Serial.println(" steps.");
+
+      runSingleMotor(motorIdx, steps);
+      Serial.println("Done.");
+    }
+  }
+}</code></pre>
+    </section>
+</main>
+
+<footer class="copyright">
+    <p><i class="fa-regular fa-copyright"></i> 2026 by Vivian Chen.</p>
+</footer>
+
+<script>
+    const sidemenu = document.getElementById('sidemenu');
+
+    function openmenu(){
+        sidemenu.style.right = '0';
+    }
+
+    function closemenu(){
+        sidemenu.style.right = '-200px';
+    }
+
+    const codeElement = document.getElementById('project-code');
+    const codeText = codeElement.textContent;
+    const tokenPattern = /(\/\/[^\n]*|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|\b(?:const|int|void|for|bool|long|if|else|char|return)\b|\b(?:true|false|HIGH|LOW|OUTPUT|A[0-8])\b|\b\d+\b|\b[A-Za-z_]\w*(?=\s*\())/g;
+    const keywords = new Set(['const', 'int', 'void', 'for', 'bool', 'long', 'if', 'else', 'char', 'return']);
+    const constants = new Set(['true', 'false', 'HIGH', 'LOW', 'OUTPUT']);
+    const escapeHtml = (text) => text.replace(/[&<>"']/g, (character) => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;'
+    })[character]);
+
+    codeElement.innerHTML = codeText.replace(tokenPattern, (token) => {
+        let tokenClass = 'code-number';
+        if (token.startsWith('//')) {
+            tokenClass = 'code-comment';
+        } else if (token.startsWith('"') || token.startsWith("'")) {
+            tokenClass = 'code-string';
+        } else if (keywords.has(token)) {
+            tokenClass = 'code-keyword';
+        } else if (constants.has(token) || /^A[0-8]$/.test(token)) {
+            tokenClass = 'code-constant';
+        } else if (!/^\d+$/.test(token)) {
+            tokenClass = 'code-function';
+        }
+        return `<span class="${tokenClass}">${escapeHtml(token)}</span>`;
+    });
+
+    document.getElementById('copy-code-button').addEventListener('click', async (event) => {
+        const button = event.currentTarget;
+        const label = button.querySelector('span');
+
+        try {
+            await navigator.clipboard.writeText(codeText);
+        } catch (clipboardError) {
+            const temporaryTextarea = document.createElement('textarea');
+            temporaryTextarea.value = codeText;
+            temporaryTextarea.setAttribute('readonly', '');
+            temporaryTextarea.style.position = 'fixed';
+            temporaryTextarea.style.opacity = '0';
+            document.body.appendChild(temporaryTextarea);
+            temporaryTextarea.select();
+            const copied = document.execCommand('copy');
+            temporaryTextarea.remove();
+
+            if (!copied) {
+                label.textContent = 'Copy failed';
+                button.setAttribute('aria-label', 'Copy failed. Select the code and copy it manually.');
+                console.error('Unable to copy project code.', clipboardError);
+                return;
+            }
+        }
+
+        label.textContent = 'Copied!';
+        button.setAttribute('aria-label', 'Arduino code copied');
+        window.setTimeout(() => {
+            label.textContent = 'Copy code';
+            button.setAttribute('aria-label', 'Copy Arduino code');
+        }, 2000);
+    });
+</script>
+</body>
+</html>
