@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ME416 Robot Arm | Vivian Chen</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="project-page">
+<header id="header" class="project-page-header">
+    <div class="container">
+        <nav>
+            <a href="../index.html#header" aria-label="Vivian Chen home">
+                <img src="../images/logo.png" class="logo" alt="Vivian Chen">
+            </a>
+            <ul id="sidemenu">
+                <li><a href="../index.html#header">Home</a></li>
+                <li><a href="../index.html#about">About</a></li>
+                <li><a href="../index.html#portfolio">Portfolio</a></li>
+                <li><a href="../index.html#contact">Contact</a></li>
+                <li><a href="../resume.html">Resume</a></li>
+                <i class="fa-solid fa-times" onclick="closemenu()" aria-label="Close menu"></i>
+            </ul>
+            <i class="fa-solid fa-bars" onclick="openmenu()" aria-label="Open menu"></i>
+        </nav>
+        <div class="header-text">
+            <p>ME416 Mechanical Engineering Project</p>
+            <h1><span>Robot Arm</span></h1>
+        </div>
+    </div>
+</header>
+
+<main class="container project-content">
+    <section class="project-section project-intro" aria-labelledby="project-intro-title">
+        <img class="project-intro-image" src="../images/robot_arm.png" alt="Three-degree-of-freedom robotic arm prototype">
+        <div class="project-copy">
+            <span class="project-kicker">Overview</span>
+            <h2 id="project-intro-title">ME416: Robot Arm</h2>
+            <p>This 3-degree-of-freedom robotic arm features Wi-Fi connectivity and MQTT integration, enabling full remote control beyond the standard Arduino serial interface.</p>
+        </div>
+    </section>
+
+    <section class="project-section" aria-labelledby="project-timeline-title">
+        <div class="project-section-heading">
+            <h2 id="project-timeline-title">Project timeline</h2>
+        </div>
+        <div class="project-timeline">
+            <nav class="timeline-track" aria-label="Project stages">
+                <a class="timeline-step" href="#design">Design</a>
+                <span class="timeline-arrow" aria-hidden="true">&rarr;</span>
+                <a class="timeline-step" href="#cad">CAD</a>
+                <span class="timeline-arrow" aria-hidden="true">&rarr;</span>
+                <a class="timeline-step" href="#prototype">Prototype</a>
+                <span class="timeline-arrow" aria-hidden="true">&rarr;</span>
+                <a class="timeline-step" href="#code">Code</a>
+            </nav>
+        </div>
+    </section>
+
+    <section class="project-section" id="design" aria-labelledby="design-title">
+        <div class="project-section-heading">
+            <span class="project-kicker">01 / Design</span>
+            <h2 id="design-title">Hand drawings</h2>
+        </div>
+        <div class="project-gallery" aria-label="Hand-drawing photo placeholders">
+            <div class="project-photo-placeholder" role="img" aria-label="Placeholder for a hand-drawing photo"><span>Add hand-drawing photo</span></div>
+            <div class="project-photo-placeholder" role="img" aria-label="Placeholder for a second hand-drawing photo"><span>Add hand-drawing photo</span></div>
+            <div class="project-photo-placeholder" role="img" aria-label="Placeholder for a third hand-drawing photo"><span>Add hand-drawing photo</span></div>
+        </div>
+    </section>
+
+    <section class="project-section" id="cad" aria-labelledby="cad-title">
+        <div class="project-section-heading">
+            <span class="project-kicker">02 / CAD</span>
+            <h2 id="cad-title">3D model</h2>
+        </div>
+        <figure class="project-model-figure">
+            <div class="model-viewer-placeholder" role="img" aria-label="Placeholder for an embedded 3D CAD model">3D model viewer space</div>
+        </figure>
+    </section>
+
+    <section class="project-section" id="prototype" aria-labelledby="prototype-title">
+        <div class="project-section-heading">
+            <span class="project-kicker">03 / Prototype</span>
+            <h2 id="prototype-title">Built system</h2>
+        </div>
+        <figure class="project-prototype-figure">
+            <img class="project-prototype-image" src="../images/robot_arm.png" alt="Three-degree-of-freedom robotic arm prototype">
+            <figcaption>Three-degree-of-freedom robotic arm prototype.</figcaption>
+        </figure>
+    </section>
+
+    <section class="project-section" id="code" aria-labelledby="code-title">
+        <div class="project-section-heading">
+            <span class="project-kicker">04 / Code</span>
+            <h2 id="code-title">Control code</h2>
+        </div>
+        <pre class="code-placeholder"><code>Project code goes here</code></pre>
+    </section>
+</main>
+
+<footer class="copyright">
+    <p><i class="fa-regular fa-copyright"></i> 2026 by Vivian Chen.</p>
+</footer>
+
+<script>
+    const sidemenu = document.getElementById('sidemenu');
+
+    function openmenu(){
+        sidemenu.style.right = '0';
+    }
+
+    function closemenu(){
+        sidemenu.style.right = '-200px';
+    }
+</script>
+</body>
+</html>
